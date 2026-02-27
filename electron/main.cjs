@@ -1,4 +1,4 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, dialog } = require('electron');
 const path = require('path');
 
 function createWindow() {
@@ -11,11 +11,16 @@ function createWindow() {
   });
 
   const devUrl = process.env.VITE_DEV_SERVER_URL || 'http://localhost:5173';
+  const prodFile = path.join(__dirname, '..', 'dist', 'index.html');
+
+  win.webContents.on('did-fail-load', (_event, code, desc) => {
+    dialog.showErrorBox('FlyForge Studio load error', `Renderer kon niet laden (${code}): ${desc}`);
+  });
 
   if (!app.isPackaged) {
     win.loadURL(devUrl);
   } else {
-    win.loadFile(path.join(__dirname, '..', 'dist', 'index.html'));
+    win.loadFile(prodFile);
   }
 }
 
