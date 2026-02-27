@@ -2,8 +2,8 @@
   "name": "flyforge-studio",
   "version": "1.0.0",
   "private": true,
-  "description": "FlyForge Studio - open-source flyer design tool by Vincent Borgers",
-  "author": "Vincent Borgers",
+  "description": "FlyForge Studio - open-source flyer design tool",
+  "author": "",
   "license": "MIT",
   "type": "module",
   "main": "electron/main.cjs",
@@ -13,8 +13,8 @@
     "preview": "vite preview",
     "desktop": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
     "dist:desktop": "npm run build && electron-builder",
-    "dist:win": "npm run build && electron-builder --win nsis",
-    "dist:win:portable": "npm run build && electron-builder --win portable"
+    "dist:win": "npm run build && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win nsis",
+    "dist:win:portable": "npm run build && cross-env CSC_IDENTITY_AUTO_DISCOVERY=false electron-builder --win portable"
   },
   "dependencies": {
     "konva": "^9.3.22",
@@ -34,13 +34,15 @@
     "electron-builder": "^25.1.8",
     "typescript": "^5.6.3",
     "vite": "^5.4.11",
-    "wait-on": "^8.0.1"
+    "wait-on": "^8.0.1",
+    "cross-env": "^7.0.3"
   },
   "build": {
     "appId": "com.vincentborgers.flyforgestudio",
     "productName": "FlyForge Studio",
     "directories": {
-      "output": "release"
+      "output": "release",
+      "buildResources": "buildResources"
     },
     "files": [
       "dist/**/*",
@@ -48,13 +50,18 @@
       "package.json"
     ],
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "buildResources/icon.ico",
+      "signAndEditExecutable": false,
+      "forceCodeSigning": false
     },
     "linux": {
-      "target": "AppImage"
+      "target": "AppImage",
+      "icon": "buildResources/icon.png"
     },
     "mac": {
-      "target": "dmg"
+      "target": "dmg",
+      "icon": "buildResources/icon.icns"
     },
     "artifactName": "${productName}-Setup-${version}.${ext}",
     "nsis": {
@@ -64,5 +71,8 @@
       "createStartMenuShortcut": true,
       "shortcutName": "FlyForge Studio"
     }
-  }
+  },
+  "contributors": [
+    "Vincent Borgers"
+  ]
 }
