@@ -1,0 +1,75 @@
+{
+  "name": "flyforge-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "FlyForge Studio - open-source flyer design tool",
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "desktop": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "dist:desktop": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win nsis",
+    "dist:win:portable": "npm run build && electron-builder --win portable"
+  },
+  "dependencies": {
+    "konva": "^9.3.22",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-konva": "^18.2.10",
+    "uuid": "^11.0.3",
+    "use-image": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.vincentborgers.flyforgestudio",
+    "productName": "FlyForge Studio",
+    "directories": {
+      "output": "release",
+      "buildResources": "buildResources"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "buildResources/icon.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "buildResources/icon.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "buildResources/icon.icns"
+    },
+    "artifactName": "${productName}-Setup-${version}.${ext}",
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "FlyForge Studio"
+    }
+  },
+  "contributors": [
+    "Vincent Borgers"
+  ]
+}

@@ -1,0 +1,126 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: #e5e7eb;
+  background: #111827;
+}
+
+* { box-sizing: border-box; }
+body, html, #root { margin: 0; height: 100%; }
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 300px 1fr 290px;
+  height: 100%;
+}
+
+.panel {
+  padding: 18px;
+  background: #1f2937;
+  overflow: auto;
+  border-right: 1px solid #374151;
+}
+
+.panel.right {
+  border-right: none;
+  border-left: 1px solid #374151;
+}
+
+.subtitle { color: #9ca3af; margin-top: -8px; }
+.tiny { color: #94a3b8; margin-top: -4px; }
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1rem; margin-bottom: 10px; }
+section { margin-bottom: 20px; }
+
+.grid-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.stack-buttons {
+  display: grid;
+  gap: 8px;
+}
+
+button, .file-btn, select, input, textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #4b5563;
+  background: #111827;
+  color: #e5e7eb;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+button, .file-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.file-btn input { display: none; }
+
+label { display: grid; gap: 6px; margin-bottom: 10px; font-size: 0.88rem; color: #d1d5db; }
+
+.canvas-area {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #111827, #030712);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  border-bottom: 1px solid #374151;
+}
+
+.toolbar button { width: auto; }
+
+.stage-wrap {
+  flex: 1;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.stage-wrap canvas {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+}
+
+.properties input[type='range'] { padding: 0; }
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.7);
+  display: grid;
+  place-items: center;
+  z-index: 60;
+}
+
+.modal {
+  width: min(720px, calc(100vw - 40px));
+  background: #111827;
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 18px;
+  display: grid;
+  gap: 12px;
+}
+
+.modal textarea {
+  min-height: 280px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+}
+
+@media (max-width: 1280px) {
+  .app-shell { grid-template-columns: 260px 1fr; }
+  .panel.right { display: none; }
+}
