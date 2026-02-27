@@ -2,11 +2,14 @@ export type LayerType = 'text' | 'rect' | 'circle' | 'image';
 
 export interface BaseLayer {
   id: string;
+  name: string;
   type: LayerType;
   x: number;
   y: number;
   rotation: number;
   opacity: number;
+  visible: boolean;
+  locked: boolean;
 }
 
 export interface TextLayer extends BaseLayer {
