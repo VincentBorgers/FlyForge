@@ -1,6 +1,11 @@
 # FlyForge Studio
+<p align="center">
+  <img src="https://raw.githubusercontent.com/VincentBorgers/FlyForge/2f3dcf93d54f97097bf8c06be6a1bff644a15031/src/FlyForge-banner.png" alt="FlyForge banner" width="100%" />
+</p>
 
 **FlyForge Studio** is een uitgebreide open-source flyer design tool/editor voor desktop en web.
+</p>
+Nog in ontwikkeling, tool kan bugs of fouten bevatten!
 
 ## Functies
 - Multi-canvas presets (A4, A5, Instagram, Poster).
